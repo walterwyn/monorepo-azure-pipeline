@@ -11,4 +11,4 @@ jobs:
         displayName: Check update status
         inputs:
           scriptPath: cicd/scripts/check-update-status.sh
-          args: ${{ parameters.projectName }} ${{ parameters.subPath }}
+          args: ${{ format('{0} {1}', parameters.projectName, parameters.subPath) }}
