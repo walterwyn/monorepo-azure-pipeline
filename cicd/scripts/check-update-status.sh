@@ -2,7 +2,7 @@
 
 target="${MONOREPO_BUILD_TARGET:-$1}"
 
-if [[ "$target" != "" ]]; then
+if [[ "$target" == "" ]]; then
   echo "Must specify target, as argument or in \$MONOREPO_BUILD_TARGET"
   exit 1
 fi

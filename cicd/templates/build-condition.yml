@@ -7,4 +7,4 @@ jobs:
       - task: ShellScript@2
         inputs:
           scriptPath: cicd/scripts/check-update-status.sh
-          args: ${{ parameters.projectName }}
+          args: '${{ parameters.projectName }}'
