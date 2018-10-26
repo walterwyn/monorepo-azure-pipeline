@@ -2,17 +2,6 @@ parameters:
   projectName: ''
 
 jobs:
-  - job: ${{ format('Check if {0} is updated', parameters.projectName) }}
+  - job: ${{ format('check_update_status_for_{0}', parameters.projectName) }}
     steps:
-      - bash: |
-          target=${{ parameters.project-name }}
-          head="$(git rev-list -1 HEAD)"
-          latest="$(git rev-list -1 $(git tag | grep $target | tail -n 1 | tr -d '\n'))"
-          skip='true'
-          if [[ "$head" == "$latest" ]]; then
-            skip='true'
-          else
-            skip='false'
-          fi
-
-          echo "##vso[task.setvariable variable=skipsubsequent;isOutput=true]$skip"
+      - bash: ../scripts/check-update-status ${{ parameters.projectName }}
