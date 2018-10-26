@@ -13,7 +13,7 @@ tag="$(git tag | grep "$target" | tail -n 1 | tr -d '\n')"
 if [[ "$tag" == "" ]]; then
   updated='true'
 else
-  latest="$(git rev-list -1 "")"
+  latest="$(git rev-list -1 "$tag")"
   if [[ "$head" == "$latest" ]]; then
     updated='false'
   else
