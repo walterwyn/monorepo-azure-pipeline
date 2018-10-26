@@ -1,5 +1,7 @@
 jobs:
   - job: build_foo
+    pool:
+      vmImage: 'ubuntu-16.04'
     dependsOn: check_update_status_for_foo
     condition: and(succeeded(), eq(dependencies.check_update_status_for_foo.outputs['foo.updated'], 'true'))
     steps:
