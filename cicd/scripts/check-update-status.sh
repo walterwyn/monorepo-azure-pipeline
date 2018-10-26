@@ -1,6 +1,7 @@
 #!/bin/bash -e
 
-target="$1"
+target="${MONOREPO_BUILD_TARGET:-$1}"
+[[ "$target" != "" ]] || (echo "Must specify target, as argument or in \$MONOREPO_BUILD_TARGET" && exit 1)
 head="$(git rev-list -1 HEAD)"
 tag="$(git tag | grep "$target" | tail -n 1 | tr -d '\n')"
 
