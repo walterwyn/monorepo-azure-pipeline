@@ -11,4 +11,5 @@ jobs:
     steps:
       - bash: |
           git tag build-${{ parameters.projectName }}-${{ BUILD_BUILDID }}
+          git push --tags
         displayName: Tag build
