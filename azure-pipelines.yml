@@ -3,3 +3,6 @@ jobs:
     parameters:
       projectName: foo
   - template: services/foo/build.yml
+  - template: cicd/templates/tag-build.yml
+    parameters:
+      projectName: foo

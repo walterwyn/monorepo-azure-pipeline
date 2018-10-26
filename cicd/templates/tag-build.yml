@@ -1,0 +1,14 @@
+parameters:
+  projectName: ''
+
+jobs:
+  - job: ${{ format('tag_build_{0}', parameters.projectName) }}
+    pool:
+      vmImage: 'ubuntu-16.04'
+    displayName: ${{ format('Tag Build {0}', parameters.projectName )}}
+    dependsOn: build_foo
+    condition: succeeded()
+    steps:
+      - bash: |
+          git tag build-${{ parameters.projectName }}-${{ BUILD_BUILDID }}
+        displayName: Tag build
