@@ -2,3 +2,4 @@ jobs:
   - template: cicd/templates/build-condition.yml
     parameters:
       projectName: foo
+  - template: services/foo/build.yml
