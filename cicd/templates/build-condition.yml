@@ -4,6 +4,7 @@ parameters:
 jobs:
   - job: ${{ format('check_update_status_for_{0}', parameters.projectName) }}
     steps:
-      - bash: ../scripts/check-update-status.sh
-        env:
-          MONOREPO_BUILD_TARGET: ${{ parameters.projectName }}
+      - task: ShellScript@2
+        inputs:
+          scriptPath: ../scripts/check-update-status.sh
+          args: ${{ parameters.projectName }}
