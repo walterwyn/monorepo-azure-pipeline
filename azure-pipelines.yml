@@ -2,6 +2,7 @@ jobs:
   - template: cicd/templates/build-condition.yml
     parameters:
       projectName: foo
+      subPath: services/foo
   - template: services/foo/build.yml
   - template: cicd/templates/tag-build.yml
     parameters:

@@ -1,24 +1,21 @@
 #!/bin/bash -e
 
 target="${MONOREPO_BUILD_TARGET:-$1}"
+subpath="${SUBPATH:-$2}"
 
-if [[ "$target" == "" ]]; then
-  echo "Must specify target, as argument or in \$MONOREPO_BUILD_TARGET"
+if [[ "$target" == "" ]] || [[ "$subpath" == "" ]]; then
+  echo "Usage: ./$0 [<build target> [<subpath>]]"
+  echo "Arguments can also be provided through the environment variables"
+  echo "\$MONOREPO_BUILD_TARGET and \$SUBPATH"
   exit 1
 fi
 
-head="$(git rev-list -1 HEAD)"
 tag="$(git tag | grep "$target" | tail -n 1 | tr -d '\n')"
 
-if [[ "$tag" == "" ]]; then
+updated='false'
+
+if [[ "$tag" == "" ]] || [[ "git log $tag..HEAD --format=%h -- "$subpath" | tr -d '\n'" != "" ]]; then
   updated='true'
-else
-  latest="$(git rev-list -1 "$tag")"
-  if [[ "$head" == "$latest" ]]; then
-    updated='false'
-  else
-    updated='true'
-  fi
 fi
 
 echo "The $target project is $([[ "$updated" == 'true' ]] && echo 'updated' || echo 'not updated') since the last build."

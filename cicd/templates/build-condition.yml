@@ -1,5 +1,6 @@
 parameters:
   projectName: ''
+  subPath: ''
 
 jobs:
   - job: ${{ format('check_update_status_for_{0}', parameters.projectName) }}
@@ -10,4 +11,4 @@ jobs:
         displayName: Check update status
         inputs:
           scriptPath: cicd/scripts/check-update-status.sh
-          args: '${{ parameters.projectName }}'
+          args: ${{ parameters.projectName }} ${{ parameters.subPath }}
