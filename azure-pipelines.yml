@@ -1,7 +1,5 @@
 jobs:
   - template: cicd/templates/build-condition.yml
-    displayName: Check update status for foo
     parameters:
       projectName: foo
   - template: services/foo/build.yml
-    displayName: Build foo

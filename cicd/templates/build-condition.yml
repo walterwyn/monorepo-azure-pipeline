@@ -3,6 +3,7 @@ parameters:
 
 jobs:
   - job: ${{ format('check_update_status_for_{0}', parameters.projectName) }}
+    displayName: ${{ format('Check update status for {0}', parameters.projectName )}}
     steps:
       - task: ShellScript@2
         name: ${{ parameters.projectName }}

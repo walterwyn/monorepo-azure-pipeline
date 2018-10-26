@@ -1,5 +1,6 @@
 jobs:
   - job: build_foo
+    displayName: Build foo
     pool:
       vmImage: 'ubuntu-16.04'
     dependsOn: check_update_status_for_foo
