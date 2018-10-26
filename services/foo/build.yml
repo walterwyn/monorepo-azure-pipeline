@@ -6,3 +6,4 @@ jobs:
       - bash: |
           docker build . -t foo:$(git rev-list -1 HEAD)
         workingDirectory: services/foo
+        displayName: Build Docker image

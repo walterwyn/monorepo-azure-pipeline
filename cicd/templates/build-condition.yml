@@ -5,6 +5,7 @@ jobs:
   - job: ${{ format('check_update_status_for_{0}', parameters.projectName) }}
     steps:
       - task: ShellScript@2
+        displayName: ${{ format('Check update status for {0}', parameters.projectName )}}
         inputs:
           scriptPath: cicd/scripts/check-update-status.sh
           args: '${{ parameters.projectName }}'
