@@ -14,7 +14,7 @@ tag="$(git tag | grep "$target" | tail -n 1 | tr -d '\n')"
 
 updated='false'
 
-if [[ "$tag" == "" ]] || [[ "git log $tag..HEAD --format=%h -- "$subpath" | tr -d '\n'" != "" ]]; then
+if [[ "$tag" == "" ]] || [[ "$(git log "$tag"..HEAD --format=%h -- "$subpath" | tr -d '\n')" != "" ]]; then
   updated='true'
 fi
 
