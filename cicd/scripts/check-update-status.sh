@@ -22,4 +22,4 @@ else
 fi
 
 echo "The $target project is $([[ "$updated" == 'true' ]] && echo 'updated' || echo 'not updated') since the last build."
-echo "##vso[task.setvariable variable=${target}updated;isOutput=true]$updated"
+echo "##vso[task.setvariable variable=updated;isOutput=true]$updated"

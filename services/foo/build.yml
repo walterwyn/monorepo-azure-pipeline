@@ -1,7 +1,7 @@
 jobs:
   - job: build_foo
     dependsOn: check_update_status_for_foo
-    condition: and(succeeded(), eq(dependencies.check_update_status_for_foo.outputs['fooupdated'], 'true'))
+    condition: and(succeeded(), eq(dependencies.check_update_status_for_foo.outputs['foo.updated'], 'true'))
     steps:
       - bash: |
           docker build . -t foo:$(git rev-list -1 HEAD)
