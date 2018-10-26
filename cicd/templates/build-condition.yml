@@ -11,4 +11,5 @@ jobs:
         displayName: Check update status
         inputs:
           scriptPath: cicd/scripts/check-update-status.sh
+          disableAutoCwd: true
           args: ${{ format('{0} {1}', parameters.projectName, parameters.subPath) }}
