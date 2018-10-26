@@ -6,6 +6,8 @@ jobs:
     dependsOn: check_update_status_for_foo
     condition: and(succeeded(), eq(dependencies.check_update_status_for_foo.outputs['foo.updated'], 'true'))
     steps:
+      - checkout: self
+        fetchDepth: 1
       - bash: |
           docker build . -t foo:$(git rev-list -1 HEAD)
         workingDirectory: services/foo

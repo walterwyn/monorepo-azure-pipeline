@@ -9,6 +9,9 @@ jobs:
     dependsOn: build_foo
     condition: succeeded()
     steps:
+      - checkout: self
+        persistCredentials: true
+        fetchDepth: 1
       - bash: |
           git tag build-$PROJECT_NAME-$BUILD_BUILDID
           git push --tags
