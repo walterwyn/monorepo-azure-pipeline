@@ -1,3 +1,3 @@
 FROM alpine
 
-RUN echo "building project foo again"
+RUN echo "building project foo"
