@@ -4,6 +4,8 @@ jobs:
     pool:
       vmImage: 'ubuntu-16.04'
     steps:
+      - checkout: self
+        persistCredentials: true
       - template: ../../cicd/templates/check-update-status.step.yml
         parameters:
           projectName: foo
