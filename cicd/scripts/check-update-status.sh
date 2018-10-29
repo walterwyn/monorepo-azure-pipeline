@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-target="${MONOREPO_BUILD_TARGET:-$1}"
+target=$(echo "${MONOREPO_BUILD_TARGET:-$1}" | tr '[:upper:]' '[:lower:]')
 subpath="${SUBPATH:-$2}"
 
 if [[ "$target" == "" ]] || [[ "$subpath" == "" ]]; then
