@@ -3,12 +3,15 @@ jobs:
     displayName: Build foo
     pool:
       vmImage: 'ubuntu-16.04'
-    dependsOn: check_update_status_for_foo
-    condition: and(succeeded(), eq(dependencies.check_update_status_for_foo.outputs['foo.updated'], 'true'))
     steps:
-      - checkout: self
-        fetchDepth: 1
+      - template: ../../cicd/templates/check-update-status.step.yml
+        parameters:
+          projectName: foo
       - bash: |
           docker build . -t foo:$(git rev-list -1 HEAD)
         workingDirectory: services/foo
         displayName: Build Docker image
+        condition: and(succeeded(), eq(variables.foo.updated, 'true'))
+      - template: ../../cicd/templates/tag-build.step.yml
+        parameters:
+          projectName: foo
