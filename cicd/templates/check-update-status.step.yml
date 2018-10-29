@@ -1,0 +1,11 @@
+parameters:
+  projectName: ''
+  subPath: ''
+steps:
+  - task: ShellScript@2
+    name: ${{ parameters.projectName }}
+    displayName: Check update status
+    inputs:
+      scriptPath: cicd/scripts/check-update-status.sh
+      disableAutoCwd: true
+      args: ${{ format('{0} {1}', parameters.projectName, parameters.subPath) }}
