@@ -6,6 +6,6 @@ steps:
       git tag build-$PROJECT_NAME-$BUILD_BUILDID
       git push --tags
     displayName: Tag build
-    condition: and(succeeded(), eq(variables.${{ parameters.projectName }}.updated, 'true'))
+    condition: ${{ format('and(succeeded(), eq(variables.{0}.updated, ''true''))', parameters.projectName) }}
     env:
       PROJECT_NAME: ${{ parameters.projectName }}
