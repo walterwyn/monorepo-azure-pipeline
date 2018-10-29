@@ -19,5 +19,8 @@ if [[ "$tag" == "" ]] || [[ "$(git log "$tag"..HEAD --format=%h -- "$subpath" | 
 fi
 
 echo "The $target project is $([[ "$updated" == 'true' ]] && echo 'updated' || echo 'not updated') since the last build."
-echo "##vso[task.setvariable variable=updated]$updated"
-echo "##vso[task.setvariable variable=updated;isOutput=true]$updated"
+
+for setter in "##vso[task.setvariable variable=updated]$updated" "##vso[task.setvariable variable=updated;isOutput=true]$updated"; do
+  echo "$setter"
+  echo "'$setter"
+done
