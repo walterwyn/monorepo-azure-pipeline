@@ -1,20 +1,6 @@
-jobs:
-  - job: build_foo
-    displayName: Build foo
-    pool:
-      vmImage: 'ubuntu-16.04'
-    steps:
-      - checkout: self
-        persistCredentials: true
-      - template: ../../cicd/templates/check-update-status.step.yml
-        parameters:
-          projectName: foo
-          subPath: services/foo
-      - bash: |
-          docker build . -t foo:$(git rev-list -1 HEAD)
-        workingDirectory: services/foo
-        displayName: Build Docker image
-        condition: and(succeeded(), eq(variables.updated, 'true'))
-      - template: ../../cicd/templates/tag-build.step.yml
-        parameters:
-          projectName: foo
+steps:
+  - bash: |
+      docker build . -t foo:$(git rev-list -1 HEAD)
+    workingDirectory: services/foo
+    displayName: Build Docker image
+    condition: and(succeeded(), eq(variables.updated, 'true'))

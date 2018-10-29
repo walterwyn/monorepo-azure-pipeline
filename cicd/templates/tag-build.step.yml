@@ -1,11 +1,12 @@
 parameters:
-  projectName: ''
+  componentName: ''
 
 steps:
   - bash: |
-      git tag build-$PROJECT_NAME-$BUILD_BUILDID
+      tag="build-$(echo $COMPONENT | tr '[:upper:]' '[:lower:]')-$BUILD_BUILDID"
+      git tag "$tag"
       git push --tags
-    displayName: Tag build
+    displayName: ${{ format('Tag Build {0} of {1}', variables.Build.BuildId, parameters.componentName) }}
     condition: and(succeeded(), eq(variables.updated, 'true'))
     env:
-      PROJECT_NAME: ${{ parameters.projectName }}
+      COMPONENT: ${{ parameters.componentName }}
