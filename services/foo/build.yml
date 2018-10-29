@@ -12,7 +12,7 @@ jobs:
           docker build . -t foo:$(git rev-list -1 HEAD)
         workingDirectory: services/foo
         displayName: Build Docker image
-        condition: and(succeeded(), eq(variables.foo.updated, 'true'))
+        condition: and(succeeded(), eq(variables.updated, 'true'))
       - template: ../../cicd/templates/tag-build.step.yml
         parameters:
           projectName: foo
