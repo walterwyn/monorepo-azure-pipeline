@@ -1,0 +1,6 @@
+steps:
+  - bash: |
+      docker build . -t bar:$(git rev-list -1 HEAD)
+    workingDirectory: services/bar
+    displayName: Build Docker image
+    condition: and(succeeded(), eq(variables.updated, 'true'))

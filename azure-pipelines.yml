@@ -12,3 +12,8 @@ jobs:
       componentName: Foo
       subPath: services/foo
       stepsTemplate: services/foo/build.yml
+  - template: cicd/templates/build-component.job.yml
+    parameters:
+      componentName: Bar
+      subPath: services/bar
+      stepsTemplate: services/bar/build.yml
