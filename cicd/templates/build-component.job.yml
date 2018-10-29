@@ -4,8 +4,8 @@ parameters:
   stepsTemplate: ''
 
 jobs:
-  - job: ${{ format('build_{0}', parameters.componentName)}}
-    displayName: ${{ format('Build {0}', parameters.componentName)}}
+  - job: ${{ format('build_{0}', parameters.componentName) }}
+    displayName: ${{ format('Build {0}', parameters.componentName) }}
     pool:
       vmImage: 'ubuntu-16.04'
     steps:
