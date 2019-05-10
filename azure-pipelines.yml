@@ -9,11 +9,11 @@ trigger:
 jobs:
   - template: cicd/templates/build-component.job.yml
     parameters:
-      componentName: Foo
+      componentName: Step1
       subPath: services/foo
       stepsTemplate: services/foo/build.yml
   - template: cicd/templates/build-component.job.yml
     parameters:
-      componentName: Bar
+      componentName: Step2
       subPath: services/bar
       stepsTemplate: services/bar/build.yml
